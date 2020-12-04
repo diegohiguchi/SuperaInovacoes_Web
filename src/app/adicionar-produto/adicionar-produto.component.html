@@ -1,0 +1,31 @@
+<div class="col-md-6">
+  <h2 class="text-center">Adicionar Produto</h2>
+  <form [formGroup]="produtoForm" novalidate class="form">
+    <div class="form-group">
+      <label for="nome">Nome:</label>
+      <input formControlName="nome" placeholder="Nome" name="nome" class="form-control" id="nome" maxlength="100">
+      <div class="alert  alert-danger"
+        *ngIf="produtoForm.get('nome').hasError('required') && produtoForm.get('nome').touched">
+        Nome é obrigatório
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="valor">Valor:</label>
+      <input type="number" formControlName="valor" placeholder="Valor" name="valor" class="form-control" id="valor">
+      <div class="alert  alert-danger"
+        *ngIf="produtoForm.get('valor').hasError('required') && produtoForm.get('valor').touched">
+        Valor é obrigatório
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="imagemUpload">Imagem:</label>
+      <input type="file" formControlName="imagemUpload" placeholder="Imagem" name="imagemUpload" class="form-control"
+        id="imagemUpload" (change)="carregarImagem($event)">
+      <div class="alert  alert-danger"
+        *ngIf="produtoForm.get('imagemUpload').hasError('required') && produtoForm.get('imagemUpload').touched">
+        Imagem é obrigatório
+      </div>
+    </div>
+    <button class="btn btn-success" [disabled]='produtoForm.invalid' (click)="onSubmit()">Salvar</button>
+  </form>
+</div>
